@@ -18,13 +18,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float directionY = Input.GetAxisRaw("Vertical");
-        playerDirection = new Vector2(0, directionY).normalized;
-        
+        //float directionY = Input.GetAxisRaw("Vertical");
+        //playerDirection = new Vector2(0, directionY).normalized;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (transform.position.y < 4.5f) transform.Translate(0, playerSpeed * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (transform.position.y > -4.5f) transform.Translate(0, -playerSpeed * Time.deltaTime, 0);
+        }
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2 (0, playerDirection.y * playerSpeed);
+        
     }
 }
