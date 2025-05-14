@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1797215532062242247}
   - component: {fileID: 4063025206843371253}
   - component: {fileID: 6712899776806233027}
+  - component: {fileID: 3618614200285628923}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -179,3 +180,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3618614200285628923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8139785735406376016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a10a0b0346e7c409af9fb54240e5be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBulletPrefab: {fileID: 3798444482615571618, guid: 3c0dd0d0897170e499f6c97a4f17a383, type: 3}
+  firePoint: {fileID: 1432062369741744071}
+  bulletSpeed: 5
+  fireRate: 2
