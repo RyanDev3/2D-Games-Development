@@ -6,14 +6,14 @@ public class Obstacles : MonoBehaviour
     [SerializeField] private float maxStopXPosition;
     private float stopXPosition;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 2f;
     [SerializeField] private int damageAmount = 1;
 
     private bool isPositioned;
 
     void Start()
     {
-        stopXPosition = Random.Range(minStopXPosition + 0.0f, maxStopXPosition + 0.0f);
+        stopXPosition = Random.Range(minStopXPosition, maxStopXPosition);
     }
 
     void Update()
@@ -23,7 +23,7 @@ public class Obstacles : MonoBehaviour
             transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
 
-        if (transform.position.x < stopXPosition)
+        if (transform.position.x <= stopXPosition)
         {
             isPositioned = true;
             transform.position = new Vector2(stopXPosition, transform.position.y);
@@ -32,12 +32,18 @@ public class Obstacles : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damageAmount);
+
+                // Only respawn if still alive (optional)
+                if (playerHealth.GetCurrentHealth() > 0)
+                {
+                    playerHealth.Respawn();
+                }
             }
         }
     }

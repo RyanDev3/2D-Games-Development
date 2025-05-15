@@ -502,12 +502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e39285cc07d55b439617324d3464827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  cam: {fileID: 519420031}
-  horizontalMargin: 0.3
-  verticalMargin: 0.4
-  depth: -10
-  smoothTime: 0.25
 --- !u!1 &1328469752
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,8 +588,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1328469757}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -652,10 +646,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1328469752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 200d58dfc158ddb459c4701829d564ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 4fdd33cba83ffdb4dac35fb5e3c07a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
 --- !u!1 &1984948243
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +765,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200d58dfc158ddb459c4701829d564ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
 --- !u!114 &1984948249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200d58dfc158ddb459c4701829d564ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 1328469752}
 --- !u!1 &2064121497
 GameObject:
   m_ObjectHideFlags: 0

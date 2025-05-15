@@ -6,6 +6,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     private int currentHealth;
 
+    [SerializeField] private Transform respawnPoint; // ✅ ADD THIS
+
     public static PlayerHealth Instance { get; private set; }
 
     void Awake()
@@ -42,17 +44,24 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("PlayerHealth: Player has died!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("EndScreen");
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("PlayerHealth: OnTriggerEnter2D with: " + other.gameObject.tag + ", other.name: " + other.gameObject.name);
+        Debug.Log("PlayerHealth: OnTriggerEnter2D with: " + other.gameObject.tag + ", other.name: " +
+                  other.gameObject.name);
         if (other.gameObject.CompareTag("enemyBullet"))
         {
             TakeDamage(1);
             Destroy(other.gameObject);
         }
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("Player is respawning...");
+        transform.position = respawnPoint.position;
     }
 
     public int GetCurrentHealth()
