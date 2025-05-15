@@ -38,7 +38,7 @@ public class EnemyShooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         Vector2 direction = (playerTransform.position - firePoint.position).normalized;
         rb.linearVelocity = direction * bulletSpeed;
-        bullet.tag = "enemyBullet"; // Set the bullet's tag
+        bullet.tag = "enemyBullet"; 
         Destroy(bullet, 3f);
     }
 }

@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("PlayerHealth: Player has died!");
         SceneManager.LoadScene("EndScreen");
@@ -58,12 +58,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void Respawn()
+  /*  public void Respawn()
     {
         Debug.Log("Player is respawning...");
         transform.position = respawnPoint.position;
     }
-
+  */
     public int GetCurrentHealth()
     {
         return currentHealth;
