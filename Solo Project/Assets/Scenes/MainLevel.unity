@@ -424,7 +424,7 @@ MonoBehaviour:
   minY: -4.5
   timeBetweenSpawn: 3
   player: {fileID: 1826009779}
-  obstacleSpeed: 0.5
+  obstacleSpeed: 2
 --- !u!4 &704947794
 Transform:
   m_ObjectHideFlags: 0
