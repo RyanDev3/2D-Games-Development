@@ -105,6 +105,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minStopXPosition: 0
   maxStopXPosition: 5
+  enemyPrefab: {fileID: 8139785735406376016}
+  spawnPoint: {fileID: 1432062369741744071}
+  initialSpawnInterval: 5
+  minSpawnInterval: 1
+  intervalDecreaseRate: 0.1
+  decreaseIntervalTime: 10
   speed: 5
   maxHealth: 5
 --- !u!50 &4063025206843371253
