@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Timer : MonoBehaviour
@@ -20,6 +22,7 @@ public class Timer : MonoBehaviour
             currentTime = 0;
 
         UpdateTimerDisplay();
+        TimerEnd();
     }
 
     private void UpdateTimerDisplay()
@@ -27,5 +30,14 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void TimerEnd()
+    {
+        if (currentTime > 120) 
+            SceneManager.LoadScene("EndScreen");
+            else if (currentTime > 0)
+                Console.WriteLine("Ur Stupid");
+        return;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class CollectableSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject collectablePrefab;
-    [SerializeField] private float spawnInterval = 1f; // Respawn time
+    [SerializeField] private float spawnInterval = 15f; // Respawn time
     [SerializeField] private Vector2 minSpawnPos;
     [SerializeField] private Vector2 maxSpawnPos;
 

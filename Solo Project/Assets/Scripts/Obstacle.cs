@@ -51,7 +51,7 @@ public class Obstacle : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.Die();
+                playerHealth.TakeDamage(4);
             }
         }
     }

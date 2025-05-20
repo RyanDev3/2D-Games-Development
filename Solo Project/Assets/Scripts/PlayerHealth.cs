@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     private int currentHealth;
 
-    [SerializeField] private Transform respawnPoint; // ✅ ADD THIS
+    [SerializeField] private Transform respawnPoint; 
 
     public static PlayerHealth Instance { get; private set; }
 

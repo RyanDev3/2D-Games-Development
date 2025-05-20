@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Collectables : MonoBehaviour
+public class Collectable : MonoBehaviour
 {
     [SerializeField] private float speed = 5f; // Speed at which it moves towards the player
 
@@ -29,19 +29,21 @@ public class Collectables : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player")) 
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            print("Hit player.");
             
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
                 Destroy(enemy);
-                Console.WriteLine("[DEBUG] ENEMIES R DOOMED TO DIE YEYE");
+                print("[DEBUG] ENEMIES R DOOMED TO DIE YEYE");
             }
 
             // Tell the spawner to respawn after 20 seconds
             spawner.RespawnCollectable();
+            
+            Destroy(gameObject);
         }
     }
 }
