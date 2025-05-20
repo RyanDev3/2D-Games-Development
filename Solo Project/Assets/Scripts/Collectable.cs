@@ -29,11 +29,10 @@ public class Collectables : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player")) // If it touches the player
+        if (other.gameObject.CompareTag("Player")) 
         {
-            Destroy(gameObject); // Destroy this collectable
-
-            // Destroy all enemies
+            Destroy(gameObject);
+            
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies)
             {
