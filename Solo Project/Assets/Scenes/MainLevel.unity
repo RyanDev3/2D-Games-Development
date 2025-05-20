@@ -1165,6 +1165,10 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -1990040730045150407, guid: 2d99ccf20946f094e94b5ddc7057b2c0, type: 3}
+      propertyPath: currentHealthText
+      value: 
+      objectReference: {fileID: 1778884733}
     - target: {fileID: 2667519508968416422, guid: 2d99ccf20946f094e94b5ddc7057b2c0, type: 3}
       propertyPath: m_Name
       value: Player

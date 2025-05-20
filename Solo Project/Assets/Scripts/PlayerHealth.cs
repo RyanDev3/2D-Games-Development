@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 10;
     private int currentHealth;
     [SerializeField] private Transform respawnPoint; 
-    [SerializeField] private Text currentHealthText;
+    [SerializeField] private TMP_Text currentHealthText;
 
     public static PlayerHealth Instance { get; private set; }
 
@@ -27,24 +28,31 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        Debug.Log("Player health: " + currentHealth);
+
+        if (currentHealthText == null)
+        {
+            Debug.LogError("PlayerHealth: No TMP_Text found in the scene!");
+        }
+
         UpdateHealthUI();
     }
+
+
 
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
         Debug.Log("Player took " + damageAmount + " damage. Current health: " + currentHealth);
 
-        UpdateHealthUI(); 
-
+        UpdateHealthUI();
+            
+            
         if (currentHealth <= 0)
         {
             Debug.Log("PlayerHealth: Calling Die() from TakeDamage()");
             Die();
         }
     }
-
     void UpdateHealthUI()
     {
         if (currentHealthText != null)
@@ -52,6 +60,8 @@ public class PlayerHealth : MonoBehaviour
             currentHealthText.text = "Health: " + currentHealth;
         }
     }
+    
+    
     public void Die()
     {
         Debug.Log("PlayerHealth: Player has died!");
