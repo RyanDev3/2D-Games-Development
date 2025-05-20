@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -58,12 +59,6 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-  /*  public void Respawn()
-    {
-        Debug.Log("Player is respawning...");
-        transform.position = respawnPoint.position;
-    }
-  */
     public int GetCurrentHealth()
     {
         return currentHealth;

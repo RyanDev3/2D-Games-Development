@@ -1,46 +1,48 @@
+using System;
 using UnityEngine;
 
-public class Collectable : MonoBehaviour
+public class Collectables : MonoBehaviour
 {
-    [SerializeField] private float attractRadius = 3f;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float speed = 5f; // Speed at which it moves towards the player
 
     private Transform player;
+    private CollectableSpawner spawner;
 
     void Start()
     {
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
-            player = playerObj.transform;
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player"); // Find player by tag
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
+
+        spawner = FindObjectOfType<CollectableSpawner>(); // Find the spawner
     }
 
     void Update()
     {
-        if (player == null) return;
-
-        float distance = Vector2.Distance(transform.position, player.position);
-        if (distance <= attractRadius)
+        if (player != null)
         {
-            Vector2 direction = (player.position - transform.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player")) // If it touches the player
         {
-            ClearAllEnemies();
-            Destroy(gameObject);
-        }
-    }
+            Destroy(gameObject); // Destroy this collectable
 
-    void ClearAllEnemies()
-    {
-        EnemyController[] enemies = FindObjectsOfType<EnemyController>();
-        foreach (EnemyController enemy in enemies)
-        {
-            Destroy(enemy.gameObject);
+            // Destroy all enemies
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+                Console.WriteLine("[DEBUG] ENEMIES R DOOMED TO DIE YEYE");
+            }
+
+            // Tell the spawner to respawn after 20 seconds
+            spawner.RespawnCollectable();
         }
     }
 }

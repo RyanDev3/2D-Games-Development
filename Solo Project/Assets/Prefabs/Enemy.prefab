@@ -105,12 +105,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minStopXPosition: 0
   maxStopXPosition: 5
-  enemyPrefab: {fileID: 8139785735406376016}
-  spawnPoint: {fileID: 1432062369741744071}
-  initialSpawnInterval: 5
-  minSpawnInterval: 1
-  intervalDecreaseRate: 0.1
-  decreaseIntervalTime: 10
   speed: 5
   maxHealth: 5
 --- !u!50 &4063025206843371253
@@ -201,4 +195,4 @@ MonoBehaviour:
   enemyBulletPrefab: {fileID: 3798444482615571618, guid: 3c0dd0d0897170e499f6c97a4f17a383, type: 3}
   firePoint: {fileID: 1432062369741744071}
   bulletSpeed: 4
-  fireRate: 1
+  fireRate: 0.5
