@@ -6,8 +6,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 10;
     private int currentHealth;
-
     [SerializeField] private Transform respawnPoint; 
+    [SerializeField] private Text currentHealthText;
 
     public static PlayerHealth Instance { get; private set; }
 
@@ -28,12 +28,15 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         Debug.Log("Player health: " + currentHealth);
+        UpdateHealthUI();
     }
 
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
         Debug.Log("Player took " + damageAmount + " damage. Current health: " + currentHealth);
+
+        UpdateHealthUI(); 
 
         if (currentHealth <= 0)
         {
@@ -42,6 +45,13 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    void UpdateHealthUI()
+    {
+        if (currentHealthText != null)
+        {
+            currentHealthText.text = "Health: " + currentHealth;
+        }
+    }
     public void Die()
     {
         Debug.Log("PlayerHealth: Player has died!");
