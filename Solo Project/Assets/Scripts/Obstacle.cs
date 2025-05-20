@@ -10,7 +10,7 @@ public class Obstacle : MonoBehaviour
     public float timeBetweenSpawn;
     private float spawnTime;
 
-    public Transform player; 
+    public Transform player;
     public float obstacleSpeed;
 
     void Update()
@@ -29,7 +29,8 @@ public class Obstacle : MonoBehaviour
 
         if (obstacle != null && player != null)
         {
-            GameObject spawnedObstacle = Instantiate(obstacle, transform.position + new Vector3(randomX, randomY, 0), transform.rotation);
+            GameObject spawnedObstacle = Instantiate(obstacle, transform.position + new Vector3(randomX, randomY, 0),
+                transform.rotation);
             Rigidbody2D rb = spawnedObstacle.GetComponent<Rigidbody2D>();
 
             if (rb != null)
@@ -46,12 +47,20 @@ public class Obstacle : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Obstacle collided with: " + other.gameObject.name); // Debugging
+
         if (other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Obstacle hit the player! Applying damage...");
+
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(4);
+                playerHealth.Die();
+            }
+            else
+            {
+                Debug.LogError("PlayerHealth script not found on player!");
             }
         }
     }

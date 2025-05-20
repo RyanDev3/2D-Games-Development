@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
     void TimerEnd()
     {
         if (currentTime > 120) 
-            SceneManager.LoadScene("EndScreen");
+            SceneManager.LoadScene("GameEnd");
             else if (currentTime > 0)
                 Console.WriteLine("Ur Stupid");
         return;
