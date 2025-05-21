@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 309265195}
   - component: {fileID: 309265194}
+  - component: {fileID: 309265196}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -319,11 +320,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 8139785735406376016, guid: 2a34316e1792b0143ba9176fbd222a0c, type: 3}
-  player: {fileID: 5865208988003418116, guid: 2d99ccf20946f094e94b5ddc7057b2c0, type: 3}
+  Player: {fileID: 0}
   initialSpawnTime: 2
   difficultySpeed: 1
-  level2Threshold: 5
-  gameEndThreshold: 10
 --- !u!4 &309265195
 Transform:
   m_ObjectHideFlags: 0
@@ -339,6 +338,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &309265196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309265193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa040098f8c2dc4c8e834507bf3cbec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8139785735406376016, guid: 2a34316e1792b0143ba9176fbd222a0c, type: 3}
+  timeBetweenWaves: 5
+  level1Waves: 3
+  level1EnemiesPerWave: 3
+  level2Waves: 5
+  level2EnemiesPerWave: 5
 --- !u!1 &438465221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1329,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1560139028464329402, guid: 6772f1cc984067f4daa873020d927779, type: 3}
+    - target: {fileID: 8019682685231900109, guid: 2d99ccf20946f094e94b5ddc7057b2c0, type: 3}
+      propertyPath: bulletSpeed
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
