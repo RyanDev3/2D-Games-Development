@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public GameObject obstacle;
+    public GameObject obstaclePrefab;
     public float maxX;
     public float minX;
     public float maxY;
@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
 
     public Transform player;
     public float obstacleSpeed;
+    public float obstacleLifetime = 5f; 
 
     void Update()
     {
@@ -24,43 +25,59 @@ public class Obstacle : MonoBehaviour
 
     void Spawn()
     {
+        if (obstaclePrefab == null)
+        {
+            Debug.LogError("Obstacle Prefab is not assigned in the Inspector!");
+            return;
+        }
+        if (player == null)
+        {
+            Debug.LogError("Player reference is missing! Is the player in the scene?");
+            return;
+        }
+        if (obstaclePrefab == null || player == null)
+        {
+            Debug.LogError("Obstacle prefab or Player is not assigned!");
+            return;
+        }
+
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
 
-        if (obstacle != null && player != null)
-        {
-            GameObject spawnedObstacle = Instantiate(obstacle, transform.position + new Vector3(randomX, randomY, 0),
-                transform.rotation);
-            Rigidbody2D rb = spawnedObstacle.GetComponent<Rigidbody2D>();
+        GameObject spawnedObstacle = Instantiate(
+            obstaclePrefab, 
+            transform.position + new Vector3(randomX, randomY, 0), 
+            transform.rotation
+        );
 
-            if (rb != null)
-            {
-                Vector2 direction = (player.position - spawnedObstacle.transform.position).normalized;
-                rb.linearVelocity = direction * obstacleSpeed;
-            }
-        }
-        else
+        Destroy(spawnedObstacle, obstacleLifetime);
+
+        // Set up movement
+        Rigidbody2D rb = spawnedObstacle.GetComponent<Rigidbody2D>();
+        if (rb != null)
         {
-            Debug.LogError("Obstacle or Player is not assigned in the Inspector.");
+            Vector2 direction = (player.position - spawnedObstacle.transform.position).normalized;
+            rb.linearVelocity = direction * obstacleSpeed;
         }
+        
+        ObstacleDamage damageScript = spawnedObstacle.AddComponent<ObstacleDamage>();
+        damageScript.damageAmount = 1; // Or whatever damage you want
     }
+}
+
+public class ObstacleDamage : MonoBehaviour
+{
+    public int damageAmount = 1;
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Obstacle collided with: " + other.gameObject.name); // Debugging
-
-        if (other.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Obstacle hit the player! Applying damage...");
-
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.Die();
-            }
-            else
-            {
-                Debug.LogError("PlayerHealth script not found on player!");
+                playerHealth.TakeDamage(damageAmount);
+                Destroy(gameObject); // Destroy the obstacle after hitting
             }
         }
     }

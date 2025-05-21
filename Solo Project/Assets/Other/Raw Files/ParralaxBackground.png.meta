@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ParralaxBackground_0: -4023075022205635949
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

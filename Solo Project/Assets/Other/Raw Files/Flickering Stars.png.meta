@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Flickering Stars_0: -3412150814671453148
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
