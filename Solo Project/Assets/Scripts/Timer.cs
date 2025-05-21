@@ -5,11 +5,9 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [Header("Component")]
-    public TextMeshProUGUI timerText;
+    [Header("Component")] public TextMeshProUGUI timerText;
 
-    [Header("Timer Settings")]
-    public float currentTime;
+    [Header("Timer Settings")] public float currentTime;
     public bool countDown;
 
     void Update()
@@ -34,10 +32,15 @@ public class Timer : MonoBehaviour
 
     void TimerEnd()
     {
-        if (currentTime > 60) 
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "MainLevel" && currentTime >= 60)
+        {
             SceneManager.LoadScene("Level2");
-            else if (currentTime > 120)
-                SceneManager.LoadScene("GameEnd");
-        return;
+        }
+        else if (currentScene == "Level2" && currentTime >= 60)
+        {
+            SceneManager.LoadScene("GameEnd");
+        }
     }
 }
