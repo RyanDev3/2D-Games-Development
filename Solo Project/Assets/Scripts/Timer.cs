@@ -34,10 +34,10 @@ public class Timer : MonoBehaviour
 
     void TimerEnd()
     {
-        if (currentTime > 120) 
-            SceneManager.LoadScene("GameEnd");
-            else if (currentTime > 0)
-                Console.WriteLine("Ur Stupid");
+        if (currentTime > 60) 
+            SceneManager.LoadScene("Level2");
+            else if (currentTime > 120)
+                SceneManager.LoadScene("GameEnd");
         return;
     }
 }
